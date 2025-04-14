@@ -29,7 +29,10 @@ export function ThemeProvider({
   defaultTheme = "system",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme)
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem("theme") as Theme
+    return savedTheme || defaultTheme
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -45,17 +48,14 @@ export function ThemeProvider({
     }
 
     root.classList.add(theme)
+    localStorage.setItem("theme", theme)
   }, [theme])
 
   const value = {
     theme,
     setTheme: (theme: Theme) => {
       setTheme(theme)
-      try {
-        localStorage.setItem("theme", theme)
-      } catch (e) {
-        console.error(e)
-      }
+      localStorage.setItem("theme", theme)
     },
   }
 
@@ -78,16 +78,22 @@ export const useTheme = () => {
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light"
+    setTheme(newTheme)
+  }
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="mr-6"
+      onClick={toggleTheme}
+      className="mr-2 dark:text-white"
     >
       <Sun className="h-[1.5rem] w-[1.3rem] dark:hidden" />
       <Moon className="hidden h-5 w-5 dark:block" />
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">Cambia tema</span>
     </Button>
   )
 }
+
