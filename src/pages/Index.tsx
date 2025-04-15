@@ -1,4 +1,3 @@
-
 import { Lightbulb, Zap, BarChart3, ShieldCheck } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -6,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { ServiceCard } from "@/components/ServiceCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { PortfolioItem } from "@/components/PortfolioItem";
+import { AnimatedStats } from "@/components/AnimatedStats";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -142,24 +142,7 @@ const Home = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-electric-black/50 p-6 rounded-lg border border-electric-yellow/30">
-                  <div className="text-4xl font-bold text-electric-yellow mb-2">15+</div>
-                  <div className="text-gray-300">Anni di Esperienza</div>
-                </div>
-                <div className="bg-electric-black/50 p-6 rounded-lg border border-electric-yellow/30">
-                  <div className="text-4xl font-bold text-electric-yellow mb-2">500+</div>
-                  <div className="text-gray-300">Progetti Completati</div>
-                </div>
-                <div className="bg-electric-black/50 p-6 rounded-lg border border-electric-yellow/30">
-                  <div className="text-4xl font-bold text-electric-yellow mb-2">50+</div>
-                  <div className="text-gray-300">Impianti Fotovoltaici</div>
-                </div>
-                <div className="bg-electric-black/50 p-6 rounded-lg border border-electric-yellow/30">
-                  <div className="text-4xl font-bold text-electric-yellow mb-2">100%</div>
-                  <div className="text-gray-300">Clienti Soddisfatti</div>
-                </div>
-              </div>
+              <AnimatedStats />
             </div>
           </div>
         </section>
